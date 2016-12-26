@@ -23,40 +23,46 @@ declare(strict_types = 1);
 
 namespace pocketmine\entity\dataproperty\type;
 
+use pocketmine\math\Vector3;
 use pocketmine\utils\BinaryStream;
 
 /**
  * @since API 3.0.0
  */
-class ByteDataProperty extends DataProperty{
+class Vector3fDataProperty extends DataProperty{
 
-	/** @var int */
+	/** @var Vector3 */
 	protected $value;
 
 	public function readFrom(BinaryStream $stream){
-		$this->setValue($stream->getByte());
+		$stream->getVector3f($x, $y, $z);
+		$this->setValue(new Vector3($x, $y, $z));
 	}
 
 	public function writeTo(BinaryStream $stream){
-		$stream->putByte($this->value);
+		$stream->putVector3f($this->value->x, $this->value->y, $this->value->z);
 	}
 
 	public function equals(DataProperty $property) : bool{
-		return $property instanceof ByteDataProperty and $property->getValue() === $this->value;
+		return $property instanceof Vector3fDataProperty and $property->getValue()->equals($this->value);
 	}
 
 	/**
-	 * @return int 0-255
+	 * @return Vector3
 	 */
 	public function getValue(){
-		return $this->value;
+		return clone $this->value;
 	}
 
 	public function setValue($value){
-		if(is_int($value)){
-			$this->value = $value & 0xff;
+		if($value instanceof Vector3){
+			$this->value = clone $value;
 		}else{
-			throw new \InvalidArgumentException("Expected an integer value, got " . gettype($value));
+			throw new \InvalidArgumentException("Expected a Vector3 object value, got " . gettype($value));
 		}
+	}
+
+	public function __clone(){
+		$this->value = clone $this->value;
 	}
 }

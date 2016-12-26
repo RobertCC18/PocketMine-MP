@@ -28,35 +28,35 @@ use pocketmine\utils\BinaryStream;
 /**
  * @since API 3.0.0
  */
-class ByteDataProperty extends DataProperty{
+class FloatDataProperty extends DataProperty{
 
-	/** @var int */
+	/** @var float */
 	protected $value;
 
 	public function readFrom(BinaryStream $stream){
-		$this->setValue($stream->getByte());
+		$this->setValue($stream->getLFloat());
 	}
 
 	public function writeTo(BinaryStream $stream){
-		$stream->putByte($this->value);
+		$stream->putLFloat($this->value);
 	}
 
 	public function equals(DataProperty $property) : bool{
-		return $property instanceof ByteDataProperty and $property->getValue() === $this->value;
+		return $property instanceof FloatDataProperty and $property->getValue() === $this->value;
 	}
 
 	/**
-	 * @return int 0-255
+	 * @return float
 	 */
 	public function getValue(){
 		return $this->value;
 	}
 
 	public function setValue($value){
-		if(is_int($value)){
-			$this->value = $value & 0xff;
+		if(is_float($value) or is_int($value)){
+			$this->value = (float) $value;
 		}else{
-			throw new \InvalidArgumentException("Expected an integer value, got " . gettype($value));
+			throw new \InvalidArgumentException("Expected a floating point value, got " . gettype($value));
 		}
 	}
 }

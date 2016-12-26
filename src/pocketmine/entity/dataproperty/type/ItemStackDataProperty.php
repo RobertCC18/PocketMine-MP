@@ -23,40 +23,45 @@ declare(strict_types = 1);
 
 namespace pocketmine\entity\dataproperty\type;
 
+use pocketmine\item\Item;
 use pocketmine\utils\BinaryStream;
 
 /**
  * @since API 3.0.0
  */
-class ByteDataProperty extends DataProperty{
+class ItemStackDataProperty extends DataProperty{
 
-	/** @var int */
+	/** @var Item */
 	protected $value;
 
 	public function readFrom(BinaryStream $stream){
-		$this->setValue($stream->getByte());
+		$this->setValue($stream->getSlot());
 	}
 
 	public function writeTo(BinaryStream $stream){
-		$stream->putByte($this->value);
+		$stream->putSlot($this->value);
 	}
 
 	public function equals(DataProperty $property) : bool{
-		return $property instanceof ByteDataProperty and $property->getValue() === $this->value;
+		return $property instanceof ItemStackDataProperty and $property->getValue()->equals($this->value);
 	}
 
 	/**
-	 * @return int 0-255
+	 * @return Item
 	 */
 	public function getValue(){
-		return $this->value;
+		return clone $this->value;
 	}
 
 	public function setValue($value){
-		if(is_int($value)){
-			$this->value = $value & 0xff;
+		if($value instanceof Item){
+			$this->value = clone $value;
 		}else{
-			throw new \InvalidArgumentException("Expected an integer value, got " . gettype($value));
+			throw new \InvalidArgumentException("Expected an Item object value, got " . gettype($value));
 		}
+	}
+
+	public function __clone(){
+		$this->value = clone $this->value;
 	}
 }

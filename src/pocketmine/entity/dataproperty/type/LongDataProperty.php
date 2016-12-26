@@ -28,33 +28,33 @@ use pocketmine\utils\BinaryStream;
 /**
  * @since API 3.0.0
  */
-class ByteDataProperty extends DataProperty{
+class LongDataProperty extends DataProperty{
 
-	/** @var int */
+	/** @var int|string */
 	protected $value;
 
 	public function readFrom(BinaryStream $stream){
-		$this->setValue($stream->getByte());
+		$this->setValue($stream->getVarInt()); //TODO: varlong
 	}
 
 	public function writeTo(BinaryStream $stream){
-		$stream->putByte($this->value);
+		$stream->putVarInt($this->value); //TODO: varlong
 	}
 
 	public function equals(DataProperty $property) : bool{
-		return $property instanceof ByteDataProperty and $property->getValue() === $this->value;
+		return $property instanceof LongDataProperty and $property->getValue() === $this->value;
 	}
 
 	/**
-	 * @return int 0-255
+	 * @return int
 	 */
 	public function getValue(){
 		return $this->value;
 	}
 
 	public function setValue($value){
-		if(is_int($value)){
-			$this->value = $value & 0xff;
+		if(is_int($value) /* or (is_string($value) and PHP_INT_SIZE < 8)*/){ //TODO: varlong on 32-bit
+			$this->value = $value;
 		}else{
 			throw new \InvalidArgumentException("Expected an integer value, got " . gettype($value));
 		}
