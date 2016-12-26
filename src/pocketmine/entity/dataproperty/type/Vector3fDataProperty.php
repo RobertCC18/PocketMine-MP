@@ -23,6 +23,7 @@ declare(strict_types = 1);
 
 namespace pocketmine\entity\dataproperty\type;
 
+use pocketmine\entity\dataproperty\EntityDataManager;
 use pocketmine\math\Vector3;
 use pocketmine\utils\BinaryStream;
 
@@ -30,6 +31,8 @@ use pocketmine\utils\BinaryStream;
  * @since API 3.0.0
  */
 class Vector3fDataProperty extends DataProperty{
+
+	const DATA_TYPE = EntityDataManager::DATA_TYPE_VECTOR3F;
 
 	/** @var Vector3 */
 	protected $value;

@@ -30,6 +30,8 @@ use pocketmine\utils\BinaryStream;
  */
 abstract class DataProperty{
 
+	const DATA_TYPE = -1;
+
 	/**
 	 * Encodes the data property to binary.
 	 * @internal
@@ -71,4 +73,14 @@ abstract class DataProperty{
 	 * @param mixed $value
 	 */
 	abstract public function setValue($value);
+
+	/**
+	 * Returns the metadata network type
+	 * @internal
+	 *
+	 * @return int
+	 */
+	final public function getType() : int{
+		return static::DATA_TYPE;
+	}
 }

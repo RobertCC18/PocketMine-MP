@@ -23,6 +23,17 @@ declare(strict_types = 1);
 
 namespace pocketmine\entity\dataproperty;
 
+use pocketmine\entity\dataproperty\{
+	BlockPosDataProperty,
+	ByteDataProperty,
+	FloatDataProperty,
+	IntDataProperty,
+	ItemStackDataProperty,
+	LongDataProperty,
+	ShortDataProperty,
+	StringDataProperty,
+	Vector3fDataProperty
+};
 use pocketmine\utils\BinaryStream;
 
 /**

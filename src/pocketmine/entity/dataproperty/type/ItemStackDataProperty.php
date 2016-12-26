@@ -23,6 +23,7 @@ declare(strict_types = 1);
 
 namespace pocketmine\entity\dataproperty\type;
 
+use pocketmine\entity\dataproperty\EntityDataManager;
 use pocketmine\item\Item;
 use pocketmine\utils\BinaryStream;
 
@@ -30,6 +31,8 @@ use pocketmine\utils\BinaryStream;
  * @since API 3.0.0
  */
 class ItemStackDataProperty extends DataProperty{
+
+	const DATA_TYPE = EntityDataManager::DATA_TYPE_ITEMSTACK;
 
 	/** @var Item */
 	protected $value;

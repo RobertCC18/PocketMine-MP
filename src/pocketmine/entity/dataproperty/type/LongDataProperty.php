@@ -23,12 +23,15 @@ declare(strict_types = 1);
 
 namespace pocketmine\entity\dataproperty\type;
 
+use pocketmine\entity\dataproperty\EntityDataManager;
 use pocketmine\utils\BinaryStream;
 
 /**
  * @since API 3.0.0
  */
 class LongDataProperty extends DataProperty{
+
+	const DATA_TYPE = EntityDataManager::DATA_TYPE_LONG;
 
 	/** @var int|string */
 	protected $value;
