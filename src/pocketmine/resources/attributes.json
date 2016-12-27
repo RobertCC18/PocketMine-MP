@@ -1,0 +1,91 @@
+{
+	"base": {
+		"absorption": {
+			"maxValue": 16.00
+		},
+		"attack_damage": {
+			"defaultValue": 1.00,
+			"minValue": 0.00,
+			"maxValue": 1.00
+		},
+		"fall_damage": {
+			"defaultValue": 1.00
+		},
+		"follow_range": {
+			"defaultValue": 16.00,
+			"minValue": 0.00,
+			"maxValue": 2048.00
+		},
+		"health": {
+			"defaultValue": 20.00
+		},
+		"knockback_resistance": {
+			"defaultValue": 0.00,
+			"minValue": 0.00,
+			"maxValue": 1.00
+		},
+		"luck": {
+			"defaultValue": 0.00,
+			"minValue": -1024.00,
+			"maxValue": 1024.00
+		},
+		"movement": {
+			"minValue": 0.10,
+			"defaultValue": 0.70
+		}
+	},
+	"player": {
+		"health": {
+			"defaultValue": 20.00,
+			"minValue": 0.00,
+			"maxValue": 20.00,
+			"overridesBase": true
+		},
+		"attack_damage": {
+			"defaultValue": 1.00,
+			"minValue": 0.00,
+			"maxValue": 1.00,
+			"overridesBase": true
+		},
+		"player.exhaustion": {
+			"defaultValue": 4.00,
+			"minValue": 0.00,
+			"maxValue": 4.00,
+			"send": false
+		},
+		"player.experience": {
+			"defaultValue": 0.00,
+			"minValue": 0.00,
+			"maxValue": 1.00
+		},
+		"player.hunger": {
+			"defaultValue": 20.00,
+			"minValue": 0.00,
+			"maxValue": 20.00
+		},
+		"player.level": {
+			"defaultValue": 0.00,
+			"minValue": 0.00,
+			"maxValue": 24791.00
+		},
+		"player.saturation": {
+			"defaultValue": 20.00,
+			"minValue": 0.00,
+			"maxValue": 20.00
+		}
+	},
+	"horse": {
+		"horse.jump_strength": {
+			"defaultValue": 0.70,
+			"minValue": 0.00,
+			"maxValue": 2.00
+		}
+	},
+	"zombie": {
+		"zombie.spawn_reinforcements": {
+			"defaultValue": 0.00,
+			"minValue": 0.00,
+			"maxValue": 1.00
+		}
+	}
+}
